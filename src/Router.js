@@ -1,30 +1,17 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import Collage from './Collage';
 
-const Index = () => <div>INDEX</div>;
-const About = () => <div>ABOUT</div>;
-const Users = () => <div>USERS</div>;
 
 const AppRouter = () => (
     <Router>
-        <div>
+        <div className="col-md-8 offset-md-2">
             <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/about/">About</Link>
-                    </li>
-                    <li>
-                        <Link to="/users/">Users</Link>
-                    </li>
-                </ul>
+                <Collage/>
+                <h1>Jade and Jake</h1>
+                <h2>Wedding</h2>
             </nav>
-
-            <Route path="/" exact component={Index}/>
-            <Route path="/about/" component={About}/>
-            <Route path="/users/" component={Users}/>
+            <Route path="/" exact component={() => null}/>
         </div>
     </Router>
 );

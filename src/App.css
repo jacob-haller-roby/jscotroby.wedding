@@ -1,32 +1,98 @@
+@font-face {
+    font-family: 'Calligraphy';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/FREEBSC_.ttf');
+}
+
+body {
+    font-family: 'Calligraphy';
+    color: #504B3A;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+#root {
+    height: 100%;
+}
+
 .App {
-  text-align: center;
+    text-align: center;
+    height: 100%;
+    background-color: #E8E288;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+    animation: App-logo-spin infinite 20s linear;
+    height: 40vmin;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.collage-paper {
+    background-color: #AFBE8F !important;
+    margin-bottom: 50px;
+}
+
+div.collage > div {
+    margin: 0;
+}
+
+div.collage > div:last-child > div{
+    margin-bottom: 4px;
+}
+
+div.collage > div:nth-child(1) {
+    max-height: 160px;
+}
+
+div.collage > div:nth-child(2) {
+    max-height: 220px;
+}
+
+@media (min-width: 768px) and (max-width: 900px), (max-width: 600px){
+    div.collage > div:nth-child(1) {
+        max-height: 100px;
+    }
+
+    div.collage > div:nth-child(2) {
+        max-height: 300px;
+    }
+}
+
+
+div.collage > div > div {
+    overflow: hidden;
+    padding: 4px;
+}
+
+div.collage > div > div > img {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
 }
