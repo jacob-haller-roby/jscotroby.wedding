@@ -12,7 +12,12 @@ import Registry from './routes/Registry';
 import RSVP from './routes/RSVP';
 
 const StyledLink = (props) => {
-    return <NavLink exact {...props} activeStyle={{color: '#904C77'}}/>;
+    return <NavLink exact {...props} activeStyle={
+        {
+            color: '#904C77',
+            userSelect: 'none'
+        }
+    }/>;
 };
 
 const styles = {
@@ -25,7 +30,7 @@ const styles = {
 
 const PageLink = withStyles(styles)(
     (props) => {
-        let { classes } = props;
+        let {classes} = props;
         return (
             <Button component={StyledLink} to={props.to} className={classes.link}>
                 {props.label}

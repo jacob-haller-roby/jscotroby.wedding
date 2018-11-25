@@ -17,13 +17,9 @@
     padding: 8px;
 }
 
-.active-link {
-    color: red;
-}
-
 body {
     font-family: 'Calligraphy' !important;
-    color: #504B3A;
+    color: #b21c0e;
     height: 100%;
 }
 
@@ -42,16 +38,16 @@ html {
 .App {
     text-align: center;
     height: 100%;
-    background-color: #E8E288;
+    background-color: #e6e6fa;
 }
 
 .route {
-    background-color: #FAF8D4 !important;
+    background-color: #ffffff !important;
     padding: 25px;
 }
 
 .collage-paper {
-    background-color: #AFBE8F !important;
+    background-color: #f6f5db !important;
     margin-bottom: 8px;
 }
 
@@ -59,7 +55,7 @@ div.collage > div {
     margin: 0;
 }
 
-div.collage > div:last-child > div{
+div.collage > div:last-child > div {
     margin-bottom: 4px;
 }
 
@@ -71,7 +67,7 @@ div.collage > div:nth-child(2) {
     max-height: 220px;
 }
 
-@media (min-width: 768px) and (max-width: 900px), (max-width: 600px){
+@media (min-width: 768px) and (max-width: 900px), (max-width: 600px) {
     div.collage > div:nth-child(1) {
         max-height: 100px;
     }
@@ -80,7 +76,6 @@ div.collage > div:nth-child(2) {
         max-height: 300px;
     }
 }
-
 
 div.collage > div > div {
     overflow: hidden;
