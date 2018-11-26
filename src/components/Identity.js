@@ -47,7 +47,10 @@ class Identity extends Component {
 
     renderLoginButton() {
         return (
-            <Button onClick={this.handleOpen}>Login</Button>
+            <div>
+                <h3>{this.props.loginPrompt}</h3>
+                <Button onClick={this.handleOpen}>Login</Button>
+            </div>
         )
     }
 

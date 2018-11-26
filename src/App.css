@@ -38,9 +38,6 @@ html {
 body {
     font-family: 'Elsie' !important;
     color: #b21c0e;
-    background-image: url('/images/lace.png');
-    background-attachment: fixed;
-    background-size: cover;
 }
 
 h1 {
@@ -63,7 +60,9 @@ p {
 .App {
     text-align: center;
     height: 100%;
-    /*background-color: #e6e6fa;*/
+    background-image: url('/images/lace.png');
+    background-attachment: fixed;
+    background-size: cover;
     padding-bottom: 50px;
 }
 

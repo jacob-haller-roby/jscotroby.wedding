@@ -5,8 +5,7 @@ export default () => {
     return (
         <div>
             <h1>RSVP</h1>
-            <h3>Login to view and update your RSVP status</h3>
-            <Identity/>
+            <Identity loginPrompt='Login to view and update your RSVP status'/>
             <p>Todo: RSVP form</p>
         </div>
     );
