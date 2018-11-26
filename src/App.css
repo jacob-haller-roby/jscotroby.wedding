@@ -12,6 +12,20 @@
     src: url('/fonts/Blacksword.otf');
 }
 
+@font-face {
+    font-family: 'Elsie';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Elsie-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Camille';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Camille.ttf');
+}
+
 .full {
     margin: 8px;
     padding: 8px;
@@ -23,12 +37,18 @@ body {
     height: 100%;
 }
 
-a {
+p {
+    font-family: 'Elsie' !important;
+    font-size: 20px;
+    font-weight: 100;
+}
 
+a {
 }
 
 html {
     height: 100%;
+    min-height: 1500px;
 }
 
 #root {
@@ -39,11 +59,13 @@ html {
     text-align: center;
     height: 100%;
     background-color: #e6e6fa;
+    padding-bottom: 50px;
 }
 
 .route {
     background-color: #ffffff !important;
     padding: 25px;
+    margin: 4px;
 }
 
 .collage-paper {

@@ -14,7 +14,7 @@ import RSVP from './routes/RSVP';
 const StyledLink = (props) => {
     return <NavLink exact {...props} activeStyle={
         {
-            color: '#904C77',
+            color: '#b21c0e',
             userSelect: 'none'
         }
     }/>;
@@ -24,7 +24,9 @@ const styles = {
     link: {
         textTransform: 'initial',
         fontFamily: 'Blacksword',
-        color: '#AFBE8F'
+        color: '#B171C4',
+        fontSize: 18,
+        textShadow: '0px 1px gray'
     }
 };
 
@@ -57,14 +59,18 @@ const AppRouter = () => (
                     <PageLink to='/registry' label='Registry'/>
                     <PageLink to='/location' label='Location'/>
                 </div>
-                <div className="full">
-                    <Route path="/" exact component={Home}/>
-                    <Route path="/about/" component={About}/>
-                    <Route path="/rsvp/" component={RSVP}/>
-                    <Route path="/registry/" component={Registry}/>
-                    <Route path="/location/" component={Location}/>
-                </div>
+                <Paper className='route' elevation={10}>
+                    <div className="full">
+                        <Route path="/" exact component={Home}/>
+                        <Route path="/about/" component={About}/>
+                        <Route path="/rsvp/" component={RSVP}/>
+                        <Route path="/registry/" component={Registry}/>
+                        <Route path="/location/" component={Location}/>
+                    </div>
+                </Paper>
             </Paper>
+
+
         </div>
     </Router>
 );
