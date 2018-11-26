@@ -112,3 +112,11 @@ div.collage > div > div > img {
     width: 100px;
     height: 100px;
 }
+
+button > span {
+    text-transform: initial;
+    font-family: Blacksword;
+    color: #B171C4;
+    font-size: 18px;
+    text-shadow: 0px 1px gray
+}
