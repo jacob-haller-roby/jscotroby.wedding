@@ -1,4 +1,4 @@
 /.netlify/identity /.netlify/identity 200
 /api/v1/submissions /api/v1/submissions 200
-/users/:userId/submissions /users/:userId/submissions 200
+/api/v1/users/:userId/submissions /api/v1/users/:userId/submissions 200
 /*  /index.html  200
