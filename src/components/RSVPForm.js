@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {selectCurrentUser, selectCurrentUserFormSubmissions, selectCurrentUserRSVPs} from "../redux/Selectors";
+import {selectCurrentUser, selectCurrentUserRSVPs} from "../redux/Selectors";
 import Button from './Button';
 import {submitRSVP} from "../redux/Actions";
 import {TextField, FormControl, FormControlLabel, Radio, RadioGroup, FormLabel} from "@material-ui/core";
@@ -9,13 +9,26 @@ class RSVPForm extends Component {
 
     constructor(props) {
         super(props);
-        let rsvps = [];
-        for (let i = 0; i < this.getRSVPCount(); i++) {
-            rsvps.push({})
-        }
+        let rsvps = this.propsToRsvps(props);
         this.state = {rsvps};
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentWillReceiveProps(props) {
+        this.setState({
+            rsvps: this.propsToRsvps(props)
+        })
+    };
+
+    propsToRsvps(props) {
+        let rsvps = [];
+        for (let i = 0; i < this.getRSVPCount(); i++) {
+            let rsvp = props.previousRSVPs[i] || {};
+            console.log(rsvp.data, props);
+            rsvps.push(rsvp.data || {});
+        }
+        return rsvps;
     }
 
     getRSVPCount() {
@@ -40,7 +53,6 @@ class RSVPForm extends Component {
     }
 
     render() {
-        console.log(this.props.previousRSVPs);
         return (
             <div className="row">
                 <div className="col-12 col-xl-8 offset-xl-2">
@@ -63,15 +75,16 @@ class RSVPForm extends Component {
     }
 
     renderForm(id) {
+        let rsvp_string = id + Object.values(this.state.rsvps[id]).toString();
         return (
-            <div key={id} className="row">
+            <div key={rsvp_string} className="row">
 
                 <div className="col-md-8 right-align">
                     <TextField
                         id="outlined-name"
                         label="Name"
                         onChange={this.handleChange(id)('name')}
-
+                        defaultValue={this.state.rsvps[id].name}
                         margin="normal"
                         type="text"
                         variant="outlined"
