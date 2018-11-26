@@ -137,3 +137,7 @@ div[role=button] > span {
     display: block;
     text-align: center;
 }
+
+.right-align {
+    text-align: right;
+}

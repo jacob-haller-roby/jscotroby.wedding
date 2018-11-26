@@ -1,5 +1,9 @@
 import ActionTypes from './ActionTypes';
 import GoTrue from "gotrue-js";
+import NetlifyAPI from "netlify";
+import {selectCurrentUserRSVPs} from "./Selectors";
+import {RSVP_FORM_ID} from "../constants";
+import {encode} from "../utils/forms";
 
 // Instantiate the GoTrue auth client with an optional configuration
 
@@ -8,6 +12,9 @@ const auth = new GoTrue({
     audience: "",
     setCookie: true
 });
+
+const client = new NetlifyAPI('a27f49c094e7a45bd4d27eb31aec892e85c0b06650a669a91a79d7a8cd860101');
+console.log(client);
 
 export function checkLoginStatus() {
     return (dispatch) => {
@@ -38,4 +45,63 @@ export function logout() {
         .then(() => dispatch({
             type: ActionTypes.LOGOUT
         }));
+}
+
+export function listForms() {
+    return (dispatch) => {
+        client.listForms()
+            .then(
+                (forms) => {
+                    dispatch({
+                        type: ActionTypes.LIST_FORMS,
+                        forms
+                    });
+                    return forms;
+                }
+            )
+            .then((forms) => {
+                forms.forEach(
+                    form => dispatch(listFormSubmissions(form.id))
+                )
+            });
+    }
+}
+
+export function listFormSubmissions(form_id) {
+    return (dispatch) => {
+
+        client.listFormSubmissions({form_id})
+            .then(
+                (submissions) =>
+                    dispatch({
+                        type: ActionTypes.LIST_SUBMISSIONS,
+                        submissions,
+                        form_id
+                    })
+            );
+    }
+}
+
+export function submitRSVP(RSVPs) {
+    return (dispatch, getState) => {
+        let previousRSVPs = selectCurrentUserRSVPs(getState());
+        let promise = Promise.resolve();
+        Object.values(previousRSVPs).forEach(submission => {
+            promise.then(
+                () => client.deleteSubmission({submission_id: submission.id})
+            );
+        });
+
+        Object.values(RSVPs).forEach(values => {
+            promise.then(
+                () => fetch("/", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                    body: encode({"form-name": "rsvp", ...values})
+                })
+            )
+        });
+
+        promise.then(() => dispatch(listFormSubmissions(RSVP_FORM_ID)));
+    }
 }

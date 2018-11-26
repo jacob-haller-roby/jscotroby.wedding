@@ -8,12 +8,9 @@ let initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case ActionTypes.LOGIN:
-            console.log(action.user);
-            state.user = action.user;
-            return state;
+            return Object.assign({}, state, {user: action.user});
         case ActionTypes.LOGOUT:
-            state.user = null;
-            return state;
+            return Object.assign({}, state, {user: null});
         default:
             return state
     }

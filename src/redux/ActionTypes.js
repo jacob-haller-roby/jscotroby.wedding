@@ -1,6 +1,8 @@
 let actionTypes = {
     LOGIN: null,
-    LOGOUT: null
+    LOGOUT: null,
+    LIST_FORMS: null,
+    LIST_SUBMISSIONS: null
 };
 
 for (let key in actionTypes) {
