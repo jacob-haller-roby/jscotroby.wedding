@@ -78,7 +78,7 @@ class RSVPForm extends Component {
     renderForms() {
         let forms = [];
         for (let i = 0; i < this.props.RSVPCount; i++) {
-            forms.push(this.renderForm(i, i + this.props.previousRSVPs[i].toString));
+            forms.push(this.renderForm(i, i + this.state.edit + this.props.previousRSVPs[i].toString));
         }
         return forms;
     }
