@@ -91,6 +91,7 @@ export function submitRSVP(RSVPs) {
         let previousRSVPs = selectCurrentUserRSVPs(state);
         let user_id = selectCurrentUser(state).id;
         let promise = Promise.resolve();
+        console.log(previousRSVPs);
         Object.values(previousRSVPs).forEach(submission => {
             promise.then(
                 () => client.deleteSubmission({submission_id: submission.id})
