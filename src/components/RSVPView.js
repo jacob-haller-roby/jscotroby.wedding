@@ -22,12 +22,12 @@ class RSVPView extends Component {
 
     render() {
         if (!this.props.submissionsReceived) {
-            let style = {
+            let containerHeight = {
                 height: (this.getRSVPCount() * 160 + 89) + 'px'
             };
             return (
-                <div className="row center">
-                    <CircularProgress style={style}/>
+                <div className="row center" style={containerHeight}>
+                    <CircularProgress />
                 </div>
             );
 
