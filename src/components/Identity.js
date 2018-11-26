@@ -15,7 +15,7 @@ class Identity extends Component {
     }
 
     render() {
-        return this.props.isLoggedIn ? this.renderLogoutButton() : this.renderLoginButton();
+        return (this.props.isLoggedIn || netlifyIdentity.currentUser()) ? this.renderLogoutButton() : this.renderLoginButton();
     }
 
     renderLoginButton() {
@@ -25,7 +25,7 @@ class Identity extends Component {
     }
 
     renderLogoutButton() {
-        return <Button onClick={netlifyIdentity.logout}>Logout</Button>
+        return <Button onClick={() => netlifyIdentity.logout()}>Logout</Button>
     }
 
 };
