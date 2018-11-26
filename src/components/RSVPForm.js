@@ -1,39 +1,23 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {selectCurrentUser, selectCurrentUserRSVPs} from "../redux/Selectors";
 import Button from './Button';
-import {submitRSVP} from "../redux/Actions";
 import {TextField, FormControl, FormControlLabel, Radio, RadioGroup, FormLabel} from "@material-ui/core";
 
 class RSVPForm extends Component {
 
     constructor(props) {
         super(props);
-        let rsvps = this.propsToRsvps(props);
-        this.state = {rsvps};
+        this.state = {
+            rsvps: props.previousRSVPs,
+            edit: !props.previousRSVPs.length
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-    }
-
-    componentWillReceiveProps(props) {
-        this.setState({
-            rsvps: this.propsToRsvps(props)
-        })
+        this.toggleEdit = this.toggleEdit.bind(this);
     };
 
-    propsToRsvps(props) {
-        let rsvps = [];
-        for (let i = 0; i < this.getRSVPCount(); i++) {
-            let rsvp = props.previousRSVPs[i] || {};
-            console.log(rsvp.data, props);
-            rsvps.push(rsvp.data || {});
-        }
-        return rsvps;
-    }
-
-    getRSVPCount() {
-        return 2;
-    }
+    toggleEdit() {
+        this.setState((state) => ({edit: !state.edit}));
+    };
 
     handleChange(id) {
         return (key) => {
@@ -46,38 +30,53 @@ class RSVPForm extends Component {
                 this.setState({rsvps}, () => console.log(this.state));
             }
         }
-    }
+    };
 
     handleSubmit() {
         this.props.submitRSVPs(this.state.rsvps)
-    }
+    };
 
     render() {
         return (
             <div className="row">
-                <div className="col-12 col-xl-8 offset-xl-2">
-                    <p>
-                        Please submit the below form to RSVP to our wedding
-                    </p>
-                    {this.renderForms()}
-                    <Button onClick={this.handleSubmit}>Submit</Button>
-                </div>
+                {this.state.edit ? this.renderEdit() : this.renderStatic()}
             </div>
         );
     }
 
+    renderEdit() {
+        return (
+            <div className="col-12 col-xl-8 offset-xl-2">
+                <p>
+                    Please submit the below form to RSVP to our wedding
+                </p>
+                {this.renderForms()}
+                <Button onClick={this.handleSubmit}>Submit</Button>
+                <Button onClick={this.toggleEdit}>Cancel</Button>
+            </div>
+        );
+    };
+
+    renderStatic() {
+        return (
+            <div className="col-12 col-xl-8 offset-xl-2">
+                {this.renderForms()}
+                <Button onClick={this.toggleEdit}>Edit RSVP</Button>
+            </div>
+        );
+    };
+
     renderForms() {
         let forms = [];
-        for (let i = 0; i < this.getRSVPCount(); i++) {
-            forms.push(this.renderForm(i));
+        for (let i = 0; i < this.props.RSVPCount; i++) {
+            forms.push(this.renderForm(i, i + this.props.previousRSVPs[i].toString));
         }
         return forms;
     }
 
-    renderForm(id) {
-        let rsvp_string = id + Object.values(this.state.rsvps[id]).toString();
+    renderForm(id, key) {
         return (
-            <div key={rsvp_string} className="row">
+            <div key={key} className="row">
 
                 <div className="col-md-8 right-align">
                     <TextField
@@ -88,7 +87,9 @@ class RSVPForm extends Component {
                         margin="normal"
                         type="text"
                         variant="outlined"
+                        key={key}
                         fullWidth
+                        disabled={!this.state.edit}
                     />
                 </div>
                 <div className="col-md-4    ">
@@ -101,8 +102,8 @@ class RSVPForm extends Component {
                             value={this.state.rsvps[id].dinner}
                             row
                         >
-                            <FormControlLabel value="tofu" control={<Radio/>} label="Tofu"/>
-                            <FormControlLabel value="seitan" control={<Radio/>} label="Seitan"/>
+                            <FormControlLabel value="tofu" control={<Radio/>} label="Tofu" disabled={!this.state.edit}/>
+                            <FormControlLabel value="seitan" control={<Radio/>} label="Seitan" disabled={!this.state.edit}/>
                         </RadioGroup>
                     </FormControl>
                 </div>
@@ -113,12 +114,4 @@ class RSVPForm extends Component {
     }
 }
 
-export default connect(
-    (state) => ({
-        previousRSVPs: selectCurrentUserRSVPs(state),
-        currentUser: selectCurrentUser(state)
-    }),
-    (dispatch) => ({
-        submitRSVPs: (RSVPs) => dispatch(submitRSVP(RSVPs))
-    })
-)(RSVPForm);
+export default RSVPForm;

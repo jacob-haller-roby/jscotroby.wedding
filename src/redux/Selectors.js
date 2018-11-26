@@ -18,10 +18,13 @@ export function selectCurrentUserFormSubmissions(state) {
 }
 
 export function selectCurrentUserRSVPs(state) {
-    console.log(state);
     if (!state.identity.user || !state.interactions.submissions[RSVP_FORM_ID]) {
         return [];
     }
     let user_id = state.identity.user.id;
     return state.interactions.submissions[RSVP_FORM_ID].filter(submission => submission.data.user_id === user_id);
+}
+
+export function areSubmissionsReceived(state) {
+    return state.interactions.submissions_received;
 }

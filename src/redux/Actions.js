@@ -49,7 +49,7 @@ export function logout() {
 
 export function listForms() {
     return (dispatch) => {
-        client.listForms()
+        return client.listForms()
             .then(
                 (forms) => {
                     dispatch({
@@ -58,19 +58,22 @@ export function listForms() {
                     });
                     return forms;
                 }
-            )
-            .then((forms) => {
+            ).then((forms) => {
+                let promises = [];
                 forms.forEach(
-                    form => dispatch(listFormSubmissions(form.id))
-                )
-            });
+                    form => promises.push(dispatch(listFormSubmissions(form.id)))
+                );
+                return Promise.all(promises);
+            })
+            .then(() => dispatch({type: ActionTypes.SUBMISSIONS_RECEIVED}));
+        ;
     }
 }
 
 export function listFormSubmissions(form_id) {
     return (dispatch) => {
 
-        client.listFormSubmissions({form_id})
+        return client.listFormSubmissions({form_id})
             .then(
                 (submissions) =>
                     dispatch({
