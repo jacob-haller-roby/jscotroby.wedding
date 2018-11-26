@@ -22,7 +22,7 @@ export function selectCurrentUserRSVPs(state) {
         return [];
     }
     let user_id = state.identity.user.id;
-    return state.interactions.submissions[RSVP_FORM_ID].filter(submission => submission.data.user_id === user_id);
+    return state.interactions.submissions[RSVP_FORM_ID].filter(submission => submission.data.user_id === user_id).sort((a,b) => a.number - b.number);
 }
 
 export function areSubmissionsReceived(state) {
