@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
-import {checkLoginStatus, login, logout} from '../redux/Actions';
-import {isLoggedIn, selectCurrentUser} from "../redux/Selectors";
+import Authentication from '../hoc/Authentication';
 import Button from '../components/Button';
 import LoginDialog from '../components/LoginDialog';
 
@@ -9,7 +7,6 @@ class Identity extends Component {
 
     constructor(props) {
         super(props);
-        props.checkLoginStatus();
         this.state = {
             open: false
         };
@@ -58,19 +55,10 @@ class Identity extends Component {
         return <div>
             <p>Logged in as {this.props.user.user_metadata.full_name}</p>
             <Button onClick={this.props.logout}>Logout</Button>
+            {this.props.children}
         </div>
     }
 
 };
 
-export default connect(
-    (state) => ({
-        user: selectCurrentUser(state),
-        isLoggedIn: isLoggedIn(state)
-    }),
-    (dispatch) => ({
-        login: (email, password) => dispatch(login(email, password)),
-        logout: () => dispatch(logout()),
-        checkLoginStatus: () => dispatch(checkLoginStatus())
-    })
-)(Identity);
+export default Authentication(Identity);
