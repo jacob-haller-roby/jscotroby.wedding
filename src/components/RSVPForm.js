@@ -14,16 +14,8 @@ class RSVPForm extends Component {
             rsvps.push({})
         }
         this.state = {rsvps};
-        this.getFormData = this.getFormData.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-    }
-
-    getFormData() {
-        return {
-            ...this.state,
-            user_id: this.props.currentUser.id
-        }
     }
 
     getRSVPCount() {
@@ -44,7 +36,7 @@ class RSVPForm extends Component {
     }
 
     handleSubmit() {
-        this.props.submitRSVPs(this.getFormData())
+        this.props.submitRSVPs(this.state.rsvps)
     }
 
     render() {

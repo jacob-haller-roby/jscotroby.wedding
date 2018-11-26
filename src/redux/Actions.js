@@ -1,7 +1,7 @@
 import ActionTypes from './ActionTypes';
 import GoTrue from "gotrue-js";
 import NetlifyAPI from "netlify";
-import {selectCurrentUserRSVPs} from "./Selectors";
+import {selectCurrentUser, selectCurrentUserRSVPs} from "./Selectors";
 import {RSVP_FORM_ID} from "../constants";
 import {encode} from "../utils/forms";
 
@@ -84,7 +84,9 @@ export function listFormSubmissions(form_id) {
 
 export function submitRSVP(RSVPs) {
     return (dispatch, getState) => {
-        let previousRSVPs = selectCurrentUserRSVPs(getState());
+        let state = getState();
+        let previousRSVPs = selectCurrentUserRSVPs(state);
+        let user_id = selectCurrentUser(state).id;
         let promise = Promise.resolve();
         Object.values(previousRSVPs).forEach(submission => {
             promise.then(
@@ -93,11 +95,12 @@ export function submitRSVP(RSVPs) {
         });
 
         Object.values(RSVPs).forEach(values => {
+            console.log(values);
             promise.then(
                 () => fetch("/", {
                     method: "POST",
                     headers: {"Content-Type": "application/x-www-form-urlencoded"},
-                    body: encode({"form-name": "rsvp", ...values})
+                    body: encode({"form-name": "rsvp", ...values, user_id})
                 })
             )
         });
