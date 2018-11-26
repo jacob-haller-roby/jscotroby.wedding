@@ -7,10 +7,10 @@ class LoginDialog extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-        };
+        this.state = {};
         this.login = this.login.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.checkEnter = this.checkEnter.bind(this);
     }
 
     handleChange(key) {
@@ -19,7 +19,14 @@ class LoginDialog extends Component {
             newState[key] = e.target.value;
             this.setState(newState);
         }
-    }
+    };
+
+    checkEnter(e) {
+        if (e.key === 'Enter') {
+            this.login();
+        }
+    };
+
     handleClose() {
         this.props.onClose();
     };
@@ -36,16 +43,16 @@ class LoginDialog extends Component {
                     <TextField
                         id="outlined-email"
                         label="Email"
-                        value={this.state.email}
                         onChange={this.handleChange('email')}
+                        onKeyDown={this.checkEnter}
                         margin="normal"
                         variant="outlined"
                     />
                     <TextField
                         id="outlined-password"
                         label="Password"
-                        value={this.state.password}
                         onChange={this.handleChange('password')}
+                        onKeyDown={this.checkEnter}
                         margin="normal"
                         type="password"
                         variant="outlined"

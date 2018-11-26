@@ -36,15 +36,22 @@ html {
 }
 
 body {
-    font-family: 'Calligraphy' !important;
+    font-family: 'Elsie' !important;
     color: #b21c0e;
     background-image: url('/images/lace.png');
     background-attachment: fixed;
     background-size: cover;
 }
 
+h1 {
+    font-family: 'Calligraphy' !important;
+}
+
+h2 {
+    font-family: 'Blacksword' !important;
+}
+
 p {
-    font-family: 'Elsie' !important;
     font-size: 20px;
     font-weight: 100;
 }

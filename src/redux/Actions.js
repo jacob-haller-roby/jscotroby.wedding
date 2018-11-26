@@ -22,7 +22,7 @@ export function checkLoginStatus() {
 }
 
 export function login(email, password) {
-    return (dispatch) => auth.login(email, password)
+    return (dispatch) => auth.login(email, password, true)
         .then((user) => dispatch({
                 type: ActionTypes.LOGIN,
                 user
