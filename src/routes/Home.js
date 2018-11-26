@@ -1,17 +1,13 @@
 import React, {Component} from 'react';
-import Button from '@material-ui/core/Button';
-import netlifyIdentity from "netlify-identity-widget";
+import Identity from "../components/Identity";
 
 class Home extends Component {
-    openLogin() {
-        netlifyIdentity.open();
-    }
 
     render() {
         return (
             <div>
                 <h1>Home</h1>
-                <Button onClick={this.openLogin}>Login</Button>
+                <Identity/>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                     ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
