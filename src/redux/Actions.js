@@ -90,28 +90,29 @@ export function submitRSVP(RSVPs) {
         let state = getState();
         let previousRSVPs = selectCurrentUserRSVPs(state);
         let user_id = selectCurrentUser(state).id;
-        let promise = Promise.resolve();
-        console.log(previousRSVPs);
+
+        let deletionPromises = [];
         Object.values(previousRSVPs).forEach(submission => {
-            promise.then(
-                () => client.deleteSubmission({submission_id: submission.id})
-                    .then(console.log)
+            deletionPromises.push(
+                client.deleteSubmission({submission_id: submission.id})
             );
-            promise.then(() => console.log('deleted'))
         });
 
+        let submissionPromises = [];
         Object.values(RSVPs).forEach(values => {
-            console.log(values);
-            promise.then(
-                () => fetch("/", {
+            submissionPromises.push(
+                fetch("/", {
                     method: "POST",
                     headers: {"Content-Type": "application/x-www-form-urlencoded"},
                     body: encode({"form-name": "rsvp", ...values, user_id})
-                }).then(console.log)
+                })
+                    .then(console.log)
             );
-            promise.then(() => console.log('added'))
         });
 
-        promise.then(() => dispatch(listFormSubmissions(RSVP_FORM_ID)));
+        let promises = deletionPromises.concat(submissionPromises);
+
+        return Promise.all(promises)
+            .then(() => dispatch(listFormSubmissions(RSVP_FORM_ID)))
     }
 }
