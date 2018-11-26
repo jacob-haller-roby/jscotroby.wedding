@@ -6,8 +6,9 @@ class RSVPForm extends Component {
 
     constructor(props) {
         super(props);
+        let rsvps = JSON.parse(JSON.stringify(props.previousRSVPs));
         this.state = {
-            rsvps: props.previousRSVPs,
+            rsvps,
             edit: !props.previousRSVPs.length
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,12 +31,11 @@ class RSVPForm extends Component {
     handleChange(id) {
         return (key) => {
             return (e) => {
-                let rsvps = Object.assign({}, this.state.rsvps);
-                if (!rsvps[id]) {
-                    rsvps[id] = {};
-                }
-                rsvps[id][key] = e.target.value;
-                this.setState({rsvps}, () => console.log(this.state));
+                let rsvps = Object.assign([], this.state.rsvps);
+                let rsvp = Object.assign({}, rsvps[id]);
+                rsvp[key] = e.target.value;
+                rsvps[id] = rsvp;
+                this.setState({rsvps});
             }
         }
     };
@@ -78,7 +78,7 @@ class RSVPForm extends Component {
     renderForms() {
         let forms = [];
         for (let i = 0; i < this.props.RSVPCount; i++) {
-            forms.push(this.renderForm(i, i + this.state.edit + this.props.previousRSVPs[i].toString));
+            forms.push(this.renderForm(i, i + this.props.previousRSVPs[i].toString));
         }
         return forms;
     }
@@ -92,7 +92,7 @@ class RSVPForm extends Component {
                         id="outlined-name"
                         label="Name"
                         onChange={this.handleChange(id)('name')}
-                        defaultValue={this.state.rsvps[id].name}
+                        value={this.state.rsvps[id].name}
                         margin="normal"
                         type="text"
                         variant="outlined"
