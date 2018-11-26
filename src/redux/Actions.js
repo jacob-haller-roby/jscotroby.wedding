@@ -91,6 +91,10 @@ export function submitRSVP(RSVPs) {
         let previousRSVPs = selectCurrentUserRSVPs(state);
         let user_id = selectCurrentUser(state).id;
 
+        dispatch({
+            type: ActionTypes.FETCHING_SUBMISSIONS
+        });
+
         let deletionPromises = [];
         Object.values(previousRSVPs).forEach(submission => {
             deletionPromises.push(

@@ -17,6 +17,8 @@ export default (state = initialState, action) => {
             return Object.assign({}, state, {submissions});
         case ActionTypes.SUBMISSIONS_RECEIVED:
             return Object.assign({}, state, {submissions_received: true});
+        case ActionTypes.FETCHING_SUBMISSIONS:
+            return Object.assign({}, state, {submissions_received: false});
         default:
             return state;
     }
