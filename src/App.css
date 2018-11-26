@@ -142,6 +142,6 @@ div[role=button] > span {
     text-align: right;
 }
 
-.row > div {
+.row.auto > div {
     margin: auto;
 }

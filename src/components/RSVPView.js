@@ -26,7 +26,7 @@ class RSVPView extends Component {
                 height: (this.getRSVPCount() * 160 + 89) + 'px'
             };
             return (
-                <div className="row center" style={containerHeight}>
+                <div className="row auto center" style={containerHeight}>
                     <CircularProgress />
                 </div>
             );

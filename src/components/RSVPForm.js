@@ -85,7 +85,7 @@ class RSVPForm extends Component {
 
     renderForm(id, key) {
         return (
-            <div key={key} className="row">
+            <div key={key} className="row auto">
 
                 <div className="col-md-8 right-align">
                     <TextField
