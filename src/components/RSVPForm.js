@@ -13,11 +13,19 @@ class RSVPForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.toggleEdit = this.toggleEdit.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     };
 
     toggleEdit() {
         this.setState((state) => ({edit: !state.edit}));
     };
+
+    handleCancel() {
+        this.setState({
+            rsvps: this.props.previousRSVPs,
+            edit: false
+        })
+    }
 
     handleChange(id) {
         return (key) => {
@@ -53,7 +61,7 @@ class RSVPForm extends Component {
                 </p>
                 {this.renderForms()}
                 <Button onClick={this.handleSubmit}>Submit</Button>
-                <Button onClick={this.toggleEdit}>Cancel</Button>
+                <Button onClick={this.handleCancel}>Cancel</Button>
             </div>
         );
     };
