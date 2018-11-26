@@ -13,18 +13,29 @@ class Identity extends Component {
         netlifyIdentity.on('logout', this.props.logout);
     }
 
+    open() {
+        netlifyIdentity.open();
+    }
+
+    logout() {
+        netlifyIdentity.logout();
+        setTimeout(() => {
+            netlifyIdentity.close();
+        }, 375);
+    }
+
     render() {
         return (this.props.isLoggedIn || netlifyIdentity.currentUser()) ? this.renderLogoutButton() : this.renderLoginButton();
     }
 
     renderLoginButton() {
         return (
-            <Button onClick={() => netlifyIdentity.open()}>Login</Button>
+            <Button onClick={this.open}>Login</Button>
         )
     }
 
     renderLogoutButton() {
-        return <Button onClick={() => netlifyIdentity.logout()}>Logout</Button>
+        return <Button onClick={this.logout}>Logout</Button>
     }
 
 };
