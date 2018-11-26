@@ -113,7 +113,7 @@ div.collage > div > div > img {
     height: 100px;
 }
 
-button > span {
+div[role=button] > span {
     text-transform: initial;
     font-family: Blacksword;
     color: #B171C4;

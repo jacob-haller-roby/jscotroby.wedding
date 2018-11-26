@@ -1,10 +1,19 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux'
-import { login, logout } from '../redux/Actions';
+import {connect} from 'react-redux'
+import {login, logout} from '../redux/Actions';
 import {isLoggedIn, selectCurrentUser} from "../redux/Selectors";
-import Button from '@material-ui/core/Button';
+import Button from '../components/Button';
 import netlifyIdentity from 'netlify-identity-widget';
+
 netlifyIdentity.init();
+
+class Btn extends Component {
+    render() {
+        return (
+            <div {...this.props}/>
+        )
+    }
+}
 
 class Identity extends Component {
 
@@ -13,8 +22,8 @@ class Identity extends Component {
         if (currentUser) {
             this.props.login(currentUser);
         }
-        netlifyIdentity.on('login', this.props.login);
-        netlifyIdentity.on('logout', this.props.logout);
+        netlifyIdentity.on('login', (user) => this.login(user));
+        netlifyIdentity.on('logout', () => this.props.logout());
     }
 
     open() {
@@ -23,6 +32,10 @@ class Identity extends Component {
 
     logout() {
         netlifyIdentity.logout();
+    }
+
+    login(user) {
+        this.props.login(user);
         setTimeout(() => {
             console.log('closing');
             netlifyIdentity.close();
