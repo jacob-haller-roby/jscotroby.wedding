@@ -95,8 +95,9 @@ export function submitRSVP(RSVPs) {
         Object.values(previousRSVPs).forEach(submission => {
             promise.then(
                 () => client.deleteSubmission({submission_id: submission.id})
+                    .then(console.log)
             );
-            promise.then((deletion) => console.log('deleted: ', deletion))
+            promise.then(() => console.log('deleted'))
         });
 
         Object.values(RSVPs).forEach(values => {
@@ -106,9 +107,9 @@ export function submitRSVP(RSVPs) {
                     method: "POST",
                     headers: {"Content-Type": "application/x-www-form-urlencoded"},
                     body: encode({"form-name": "rsvp", ...values, user_id})
-                })
+                }).then(console.log)
             );
-            promise.then((addition) => console.log('added: ', addition))
+            promise.then(() => console.log('added'))
         });
 
         promise.then(() => dispatch(listFormSubmissions(RSVP_FORM_ID)));
