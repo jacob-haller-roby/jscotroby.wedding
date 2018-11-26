@@ -116,9 +116,9 @@ export function submitRSVP(RSVPs) {
         let promises = deletionPromises.concat(submissionPromises);
 
         return Promise.all(promises)
-            .then(() => dispatch(listFormSubmissions(RSVP_FORM_ID)
+            .then(() => dispatch(listFormSubmissions(RSVP_FORM_ID))
                 .then(() => dispatch({type: ActionTypes.SUBMISSIONS_RECEIVED}))
-            ))
+            )
 
     }
 }
