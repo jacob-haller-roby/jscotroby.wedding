@@ -9,6 +9,10 @@ netlifyIdentity.init();
 class Identity extends Component {
 
     componentDidMount() {
+        let currentUser = netlifyIdentity.currentUser();
+        if (currentUser) {
+            this.props.login(currentUser);
+        }
         netlifyIdentity.on('login', this.props.login);
         netlifyIdentity.on('logout', this.props.logout);
     }
@@ -20,12 +24,13 @@ class Identity extends Component {
     logout() {
         netlifyIdentity.logout();
         setTimeout(() => {
+            console.log('closing');
             netlifyIdentity.close();
-        }, 375);
+        }, 1375);
     }
 
     render() {
-        return (this.props.isLoggedIn || netlifyIdentity.currentUser()) ? this.renderLogoutButton() : this.renderLoginButton();
+        return this.props.isLoggedIn ? this.renderLogoutButton() : this.renderLoginButton();
     }
 
     renderLoginButton() {
@@ -35,7 +40,10 @@ class Identity extends Component {
     }
 
     renderLogoutButton() {
-        return <Button onClick={this.logout}>Logout</Button>
+        return <div>
+            <p>Logged in as {this.props.user.user_metadata.full_name}</p>
+            <Button onClick={this.logout}>Logout</Button>
+        </div>
     }
 
 };
