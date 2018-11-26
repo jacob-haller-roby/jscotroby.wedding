@@ -33,7 +33,8 @@ class RSVPForm extends Component {
     };
 
     handleSubmit() {
-        this.props.submitRSVPs(this.state.rsvps)
+        this.props.submitRSVPs(this.state.rsvps);
+        this.setState({edit: false});
     };
 
     render() {

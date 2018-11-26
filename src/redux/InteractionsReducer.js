@@ -8,7 +8,6 @@ let initialState = {
 
 
 export default (state = initialState, action) => {
-    console.log(action.type, state)
     switch (action.type) {
         case ActionTypes.LIST_FORMS:
             return Object.assign({}, state, {forms: action.forms});

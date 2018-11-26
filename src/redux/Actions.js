@@ -106,7 +106,6 @@ export function submitRSVP(RSVPs) {
                     headers: {"Content-Type": "application/x-www-form-urlencoded"},
                     body: encode({"form-name": "rsvp", ...values, user_id})
                 })
-                    .then(console.log)
             );
         });
 
