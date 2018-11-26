@@ -46,6 +46,7 @@ class LoginDialog extends Component {
                         onChange={this.handleChange('email')}
                         onKeyDown={this.checkEnter}
                         margin="normal"
+                        type="email"
                         variant="outlined"
                     />
                     <TextField
