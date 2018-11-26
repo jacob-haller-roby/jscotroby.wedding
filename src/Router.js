@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link, NavLink} from 'react-router-dom';
+import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
 import Collage from './Collage';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';

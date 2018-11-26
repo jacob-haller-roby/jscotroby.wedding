@@ -9,8 +9,7 @@ netlifyIdentity.init();
 class Identity extends Component {
 
     componentDidMount() {
-        let test = netlifyIdentity.on('login', this.props.login);
-        console.log(test);
+        netlifyIdentity.on('login', this.props.login);
         netlifyIdentity.on('logout', this.props.logout);
     }
 
