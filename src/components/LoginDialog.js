@@ -32,7 +32,7 @@ class LoginDialog extends Component {
         return (
             <Dialog onClose={this.handleClose} aria-labelledby="login-dialog-title" {...this.props}>
                 <DialogTitle id="login-dialog-title">Login</DialogTitle>
-                <div>
+                <div className='login-dialog-form'>
                     <TextField
                         id="outlined-email"
                         label="Email"

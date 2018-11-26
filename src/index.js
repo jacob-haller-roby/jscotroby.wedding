@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import netlifyIdentity from 'netlify-identity-widget';
-
-netlifyIdentity.init();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

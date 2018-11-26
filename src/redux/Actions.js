@@ -11,8 +11,6 @@ const auth = new GoTrue({
 
 export function checkLoginStatus() {
     return (dispatch) => {
-
-        console.log(auth);
         let user = auth.currentUser();
         if (user) {
             dispatch({
