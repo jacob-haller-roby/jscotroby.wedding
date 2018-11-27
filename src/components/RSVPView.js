@@ -11,7 +11,7 @@ class RSVPView extends Component {
         let rsvps = [];
         for (let i = 0; i < this.getRSVPCount(); i++) {
             let rsvp = props.previousRSVPs[i] || {};
-            rsvps.push(rsvp.data || {});
+            rsvps.push(rsvp.data || {attending: "yes"});
         }
         return rsvps;
     }

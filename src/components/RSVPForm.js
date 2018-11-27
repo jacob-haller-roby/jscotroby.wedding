@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Button from './Button';
-import {TextField, FormControl, FormControlLabel, Radio, RadioGroup, FormLabel} from "@material-ui/core";
+import {TextField, FormControl, FormControlLabel, Radio, RadioGroup, FormLabel, Checkbox} from "@material-ui/core";
+import {Restaurant, Favorite, FavoriteBorder} from "@material-ui/icons";
 
 class RSVPForm extends Component {
 
@@ -33,9 +34,9 @@ class RSVPForm extends Component {
             return (e) => {
                 let rsvps = Object.assign([], this.state.rsvps);
                 let rsvp = Object.assign({}, rsvps[id]);
-                rsvp[key] = e.target.value;
+                rsvp[key] = e.target.value || e.target.checked;
                 rsvps[id] = rsvp;
-                this.setState({rsvps});
+                this.setState({rsvps}, console.log(this.state));
             }
         }
     };
@@ -81,13 +82,13 @@ class RSVPForm extends Component {
             forms.push(this.renderForm(i, i + this.props.previousRSVPs[i].toString));
         }
         return forms;
-    }
+    };
 
     renderForm(id, key) {
         return (
             <div key={key} className="row auto">
 
-                <div className="col-md-8 right-align">
+                <div className="col-md-5 right-align">
                     <TextField
                         id="outlined-name"
                         label="Name"
@@ -101,8 +102,34 @@ class RSVPForm extends Component {
                         disabled={!this.state.edit}
                     />
                 </div>
-                <div className="col-md-4    ">
+                <div className="col-md-2">
                     <FormControl component="fieldset">
+                        <FormLabel component="legend">Attending?</FormLabel>
+                        <RadioGroup
+                            aria-label="Attending?"
+                            name="attending"
+                            onChange={this.handleChange(id)('attending')}
+                            value={this.state.rsvps[id].attending}
+                            row
+                        >
+                            <FormControlLabel value="yes"
+                                              control={
+                                                  <Radio icon={<FavoriteBorder/>}
+                                                         checkedIcon={<Favorite/>}/>
+                                              }
+                                              label="I'll be there!"
+                                              disabled={!this.state.edit}/>
+                            <FormControlLabel value="no"
+                                              control={
+                                                  <Radio/>
+                                              }
+                                              label="Regretfully Decline"
+                                              disabled={!this.state.edit}/>
+                        </RadioGroup>
+                    </FormControl>
+                </div>
+                <div className="col-md-3    ">
+                    {this.state.rsvps[id].attending === 'yes' && <FormControl component="fieldset">
                         <FormLabel component="legend">Diner Option</FormLabel>
                         <RadioGroup
                             aria-label="Dinner"
@@ -111,10 +138,20 @@ class RSVPForm extends Component {
                             value={this.state.rsvps[id].dinner}
                             row
                         >
-                            <FormControlLabel value="tofu" control={<Radio/>} label="Tofu" disabled={!this.state.edit}/>
-                            <FormControlLabel value="seitan" control={<Radio/>} label="Seitan" disabled={!this.state.edit}/>
+                            <FormControlLabel value="tofu"
+                                              control={
+                                                  <Radio checkedIcon={<Restaurant/>}/>
+                                              }
+                                              label="Tofu"
+                                              disabled={!this.state.edit}/>
+                            <FormControlLabel value="seitan"
+                                              control={
+                                                  <Radio checkedIcon={<Restaurant/>}/>
+                                              }
+                                              label="Seitan"
+                                              disabled={!this.state.edit}/>
                         </RadioGroup>
-                    </FormControl>
+                    </FormControl>}
                 </div>
 
 
