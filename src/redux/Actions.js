@@ -13,7 +13,8 @@ const auth = new GoTrue({
     setCookie: true
 });
 
-const client = new NetlifyAPI('a27f49c094e7a45bd4d27eb31aec892e85c0b06650a669a91a79d7a8cd860101');
+console.log(process.env);
+const client = new NetlifyAPI(process.env.REACT_APP_NETLIFY_API_KEY);
 console.log(client);
 
 export function checkLoginStatus() {
