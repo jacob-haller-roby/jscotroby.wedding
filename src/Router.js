@@ -25,10 +25,10 @@ const StyledLink = (props) => {
 const styles = {
     link: {
         textTransform: 'initial',
-        fontFamily: 'Blacksword',
+        // fontFamily: 'Blacksword',
+        fontFamily: 'Roboto',
         color: '#B171C4',
-        fontSize: 18,
-        textShadow: '0px 1px gray'
+        fontSize: 18
     }
 };
 
@@ -61,7 +61,8 @@ class AppRouter extends Component {
 
                     <Paper className='route'>
                         <h1>Jade and Jake</h1>
-                        <h2>Wedding</h2>
+                        <h2>you are cordially</h2>
+                        <h3>-INVITED-</h3>
                         <div className="full">
                             <PageLink to='/' label='Home'/>
                             <PageLink to='/about' label='About Us'/>

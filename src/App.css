@@ -47,6 +47,20 @@
     src: url('/fonts/Existence-Light.ttf');
 }
 
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'TheQueenthine';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/TheQueenthine.ttf');
+}
+
 .full {
     margin: 8px;
     padding: 8px;
@@ -66,7 +80,7 @@ h1 {
 }
 
 h2 {
-    font-family: 'Blacksword' !important;
+    font-family: 'TheQueenthine' !important;
 }
 
 p {
