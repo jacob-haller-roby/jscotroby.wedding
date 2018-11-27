@@ -1,16 +1,16 @@
-@font-face {
-    font-family: 'Calligraphy';
-    font-style: normal;
-    font-weight: 400;
-    src: url('/fonts/FREEBSC_.ttf');
-}
+/*@font-face {*/
+    /*font-family: 'Calligraphy';*/
+    /*font-style: normal;*/
+    /*font-weight: 400;*/
+    /*src: url('/fonts/FREEBSC_.ttf');*/
+/*}*/
 
-@font-face {
-    font-family: 'Blacksword';
-    font-style: normal;
-    font-weight: 400;
-    src: url('/fonts/Blacksword.otf');
-}
+/*@font-face {*/
+    /*font-family: 'Blacksword';*/
+    /*font-style: normal;*/
+    /*font-weight: 400;*/
+    /*src: url('/fonts/Blacksword.otf');*/
+/*}*/
 
 @font-face {
     font-family: 'Elsie';
@@ -19,12 +19,12 @@
     src: url('/fonts/Elsie-Regular.ttf');
 }
 
-@font-face {
-    font-family: 'Camille';
-    font-style: normal;
-    font-weight: 400;
-    src: url('/fonts/Camille.ttf');
-}
+/*@font-face {*/
+    /*font-family: 'Camille';*/
+    /*font-style: normal;*/
+    /*font-weight: 400;*/
+    /*src: url('/fonts/Camille.ttf');*/
+/*}*/
 
 @font-face {
     font-family: 'Angelow';
@@ -33,12 +33,12 @@
     src: url('/fonts/Angelow.ttf');
 }
 
-@font-face {
-    font-family: 'Minimal';
-    font-style: normal;
-    font-weight: 400;
-    src: url('/fonts/minimal.otf');
-}
+/*@font-face {*/
+    /*font-family: 'Minimal';*/
+    /*font-style: normal;*/
+    /*font-weight: 400;*/
+    /*src: url('/fonts/minimal.otf');*/
+/*}*/
 
 @font-face {
     font-family: 'Existence';
