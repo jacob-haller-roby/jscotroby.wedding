@@ -130,7 +130,7 @@ class RSVPForm extends Component {
                 </div>
                 <div className="col-md-3    ">
                     {this.state.rsvps[id].attending === 'yes' && <FormControl component="fieldset">
-                        <FormLabel component="legend">Diner Option</FormLabel>
+                        <FormLabel component="legend">Dinner Option</FormLabel>
                         <RadioGroup
                             aria-label="Dinner"
                             name="dinner"

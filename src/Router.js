@@ -27,8 +27,8 @@ const styles = {
         textTransform: 'initial',
         // fontFamily: 'Blacksword',
         fontFamily: 'Roboto',
-        color: '#B171C4',
-        fontSize: 18
+        color: '#1C59A7',
+        fontSize: '1.5rem'
     }
 };
 
