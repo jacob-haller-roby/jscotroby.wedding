@@ -7,7 +7,7 @@ import './App.css';
 
 const theme = createMuiTheme({
     typography: {
-        fontFamily: 'Elsie'
+        fontFamily: 'Existence'
     },
     palette: {
         primary: {main: '#b21c0e'},

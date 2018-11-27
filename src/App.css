@@ -26,6 +26,27 @@
     src: url('/fonts/Camille.ttf');
 }
 
+@font-face {
+    font-family: 'Angelow';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Angelow.ttf');
+}
+
+@font-face {
+    font-family: 'Minimal';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/minimal.otf');
+}
+
+@font-face {
+    font-family: 'Existence';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Existence-Light.ttf');
+}
+
 .full {
     margin: 8px;
     padding: 8px;
@@ -36,12 +57,12 @@ html {
 }
 
 body {
-    font-family: 'Elsie' !important;
+    font-family: 'Existence' !important;
     color: #b21c0e;
 }
 
 h1 {
-    font-family: 'Calligraphy' !important;
+    font-family: 'Angelow' !important;
 }
 
 h2 {
@@ -60,7 +81,7 @@ p {
 .App {
     text-align: center;
     height: 100%;
-    background-image: url('/images/lace.png');
+    background-image: url('/images/paint.jpg');
     background-attachment: fixed;
     background-size: cover;
     padding-bottom: 50px;
