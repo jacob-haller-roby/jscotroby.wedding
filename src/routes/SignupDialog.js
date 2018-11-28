@@ -61,7 +61,7 @@ class SignupDialog extends Component {
                     <TextField
                         id="outlined-email"
                         label="Email"
-                        value={this.email}
+                        value={decodeURIComponent(this.email)}
                         margin="normal"
                         type="email"
                         variant="outlined"
