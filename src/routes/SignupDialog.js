@@ -10,10 +10,12 @@ class SignupDialog extends Component {
     constructor(props) {
         super(props);
         if (window.location.hash && window.location.hash.indexOf('#invite_token=') === 0) {
-            const token = window.location.hash.replace('#invite_token=', '');
+            window.location.hash.split('&').forEach(item => {
+                let parameter = item.split('=');
+                this[parameter[0]] = parameter[1];
+            });
             this.state = {
-                open: true,
-                token
+                open: true
             };
         } else {
             this.state = {
@@ -43,7 +45,7 @@ class SignupDialog extends Component {
         if (this.state.password !== this.state.confirm) {
             this.setState({error: true})
         } else {
-            this.props.signup(this.state.token, this.state.password)
+            this.props.signup(this.invite_token, this.state.password)
             this.setState({open: false});
         }
     }
@@ -56,6 +58,15 @@ class SignupDialog extends Component {
                     open={this.state.open}>
                 <DialogTitle id="signup-dialog-title"><h1>Complete Account</h1></DialogTitle>
                 <div className='dialog-form'>
+                    <TextField
+                        id="outlined-email"
+                        label="Email"
+                        value={this.email}
+                        margin="normal"
+                        type="password"
+                        variant="outlined"
+                        disabled
+                    />
                     {this.renderError()}
                     <TextField
                         id="outlined-password"
