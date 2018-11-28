@@ -63,7 +63,7 @@ class SignupDialog extends Component {
                         label="Email"
                         value={this.email}
                         margin="normal"
-                        type="password"
+                        type="email"
                         variant="outlined"
                         disabled
                     />
