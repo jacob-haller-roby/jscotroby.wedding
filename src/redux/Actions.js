@@ -5,17 +5,13 @@ import {selectCurrentUser, selectCurrentUserRSVPs} from "./Selectors";
 import {RSVP_FORM_ID} from "../constants";
 import {encode} from "../utils/forms";
 
-// Instantiate the GoTrue auth client with an optional configuration
-
 const auth = new GoTrue({
     APIUrl: "https://www.jadeandjake.wedding/.netlify/identity",
     audience: "",
     setCookie: true
 });
 
-console.log(process.env);
 const client = new NetlifyAPI(process.env.REACT_APP_NETLIFY_API_KEY);
-console.log(client);
 
 export function checkLoginStatus() {
     return (dispatch) => {
@@ -26,6 +22,18 @@ export function checkLoginStatus() {
                 user
             });
         }
+    }
+}
+
+export function signup(token, password) {
+    return dispatch => {
+        auth.acceptInvite(token, password, true).then(
+            user => dispatch({
+                type: ActionTypes.LOGIN,
+                user
+            }),
+            error => console.error("Failed to log in: %o", error)
+        );
     }
 }
 

@@ -78,6 +78,7 @@ body {
 h1 {
     font-family: 'Angelow' !important;
     font-size: 3.5rem;
+    color: #b21c0e;
 }
 
 h2 {
@@ -168,12 +169,14 @@ div[role=button] > span {
     text-shadow: 0px 1px gray
 }
 
-.login-dialog-form {
+.dialog-form {
     padding: 24px;
+    width: 213px;
+    margin: auto;
 }
 
 
-.login-dialog-form > div {
+.dialog-form > div {
     margin: 8px auto;
     display: block;
     text-align: center;

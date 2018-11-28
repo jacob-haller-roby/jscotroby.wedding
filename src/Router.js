@@ -7,6 +7,7 @@ import {withStyles} from '@material-ui/core/styles';
 import {connect} from 'react-redux';
 import {listForms} from "./redux/Actions";
 
+import SignupDialog from './routes/SignupDialog';
 import Home from './routes/Home';
 import About from './routes/About';
 import Location from './routes/Location';
@@ -72,7 +73,8 @@ class AppRouter extends Component {
                         </div>
                         <Paper className='route' elevation={10}>
                             <div className="full">
-                                <Route path="/" exact component={Home}/>
+                                <Route component={SignupDialog}/>
+                                <Route path="/" exact component={Home} />
                                 <Route path="/about/" component={About}/>
                                 <Route path="/rsvp/" component={RSVP}/>
                                 <Route path="/registry/" component={Registry}/>
