@@ -10,7 +10,7 @@ class SignupDialog extends Component {
     constructor(props) {
         super(props);
         if (window.location.hash && window.location.hash.indexOf('#invite_token=') === 0) {
-            window.location.hash.split('&').forEach(item => {
+            window.location.hash.slice(1).split('&').forEach(item => {
                 let parameter = item.split('=');
                 this[parameter[0]] = parameter[1];
             });
